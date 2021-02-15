@@ -1,0 +1,11 @@
+---
+# handlers file for ansible-role-tomcat
+- name: tomcat_start
+  service:
+    name: tomcat
+    state: started
+    enabled: yes
+- name: tomcat_stop
+  service:
+    name: tomcat
+    state: stopped

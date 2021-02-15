@@ -1,0 +1,14 @@
+---
+# tasks file for ansible-role-tomcat
+# - name: Install Prerequisites & Tomcat
+#   include: install.yml
+#   tags:
+#     - install
+- name: Configure Tomcat
+  include: configure.yml
+  tags:
+    - configure
+- name: Deploy Welcome App to Tomcat
+  include: deploy.yml 
+  tags:
+    - deploy

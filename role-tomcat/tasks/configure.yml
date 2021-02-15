@@ -1,0 +1,13 @@
+---
+- name: Create Tomcat Service
+  template:
+    src: tomcat.service.j2
+    dest: "/etc/systemd/system/tomcat.service"
+- name: System Daemon Reload
+  systemd:
+    daemon_reload: yes
+- name: Tomcat Service Startup
+  service:
+    name: tomcat
+    state: restarted
+    enabled: yes

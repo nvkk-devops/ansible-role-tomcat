@@ -1,0 +1,10 @@
+---
+# vars file for ansible-role-tomcat
+system_packages: ['curl', 'wget']
+tomcat_home_dir: "/opt/tomcat"
+tomcat_download_url: "https://downloads.apache.org/tomcat/tomcat-10/v10.0.2/bin/apache-tomcat-10.0.2.tar.gz"
+tomcat_downloaded_filename: apache-tomcat-10.0.2.tar.gz
+tomcat_downloaded_folder: apache-tomcat-10.0.2
+java_package: java-1.8.0-openjdk
+java_home_folder: /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-1.el7_9.x86_64/jre
+application_artefact_url: jenkins.war

@@ -1,0 +1,14 @@
+---
+- name: Tomcat Service Stop
+  service:
+    name: tomcat
+    state: stopped
+- name: Copy Artefact to WebApps
+  copy:
+    src: "files/{{ application_artefact_url }}"
+    dest: "{{ tomcat_home_dir }}/{{ tomcat_downloaded_folder }}/webapps/"
+    owner: tomcat
+- name: Tomcat Service Start
+  service:
+    name: tomcat
+    state: started

@@ -1,0 +1,45 @@
+---
+- name: Install System Packages
+  package:
+    name: "{{ system_packages }}"
+    state: present
+- name: Install Java
+  package:
+    name: "{{ java_package }}"
+    state: present
+- name: Create Group
+  group:
+    name: tomcat
+    state: present
+- name: Create Users
+  user: 
+    name: tomcat
+    shell: /bin/nologin
+    home: "{{ tomcat_home_dir }}"
+    comment: Tomcat Administration user
+    groups: 
+      - tomcat
+    state: present  
+- name: Create Tomcat home
+  file:
+    path: "{{ tomcat_home_dir }}"
+    state: directory
+    mode: '0755'
+- name: Download Tomcat
+  get_url:
+    url: "{{ tomcat_download_url }}"
+    dest: "{{ tomcat_home_dir }}"
+- name: Delete Tomcat Existing Directories
+  file:
+    path: "{{ tomcat_home_dir }}/{{ tomcat_downloaded_folder }}"
+    state: absent
+- name: Unzip the Tomcat
+  unarchive:
+    src: "{{ tomcat_home_dir }}/{{ tomcat_downloaded_filename }}"
+    dest: "{{ tomcat_home_dir }}/"
+- name: Change Permissions Tomcat home
+  file:
+    path: "{{ tomcat_home_dir }}"
+    state: directory
+    recurse: yes
+    owner: tomcat
